@@ -7,10 +7,23 @@
 | 当前版本 | 1.0 |
 | 上一次更新 | 2021-09-18 |
 
+
 <br><br>
 
 ###  摘要
 这是一篇关于如何规范和优雅地使用Go语言进行编码工作的文档。文档主要参考官方推荐文档[《 Effective Go》](https://golang.org/doc/effective_go)、[《Go Code Review Comments》](https://github.com/golang/go/wiki/CodeReviewComments) 进行编写，同时采纳了[《Uber Go Style Guide》](https://github.com/uber-go/guide/blob/master/style.md)、William Kenndy 和 Hoanh 在《Ultimate Go Notebook》中许多关于编写高质量Go代码的建议。文档旨在缩短新晋Go工程师的上手周期，为他们提供基于不同约束力（例如：强制的、可参考的）的规范性指导。同时，文档的第三至八章还为提供了一些（软件）工程实践的指导。
+
+<br>
+
+<hr>
+
+<br>
+
+## 目录
+
+- [1. 介绍](#1. 介绍）
+- 
+
 
 <br>
 
@@ -175,6 +188,56 @@ var s = "foo"
 - “MixedCaps”适用于需要暴露的变量、常量、函数及方法；
 - 应尽量减少包的暴露面积。
 ```
+
+<br>
+
+<table>
+<thead><tr><th>Bad</th><th>Good</th></tr></thead>
+<tbody>
+<tr><td style="float:top">
+
+```go
+const (
+    debugMode = true
+)
+
+var userName string
+
+type clientConfig struct {}
+
+type ServerConfig struct {}
+
+func ResolveValue(str string) string { 
+    ... 
+}    
+
+```
+
+</td><td style="float: top">
+
+```go
+const (
+    // 不要使用下划线连接word。
+    DEBUG_MODO = true
+)
+
+var (
+    // 变量中不要带有中文或其他文字。
+    user张三 *User
+    
+    // 不要使用数字，尽量提高变量的自解释性。
+    user1 *User
+    user2 *User
+)
+
+func User_Get(id string) *User { 
+    ... 
+}
+
+```
+
+</td></tr>
+</tbody></table>
 
 <br><br>
 
