@@ -66,7 +66,7 @@
 例如：
 
 <table>
-<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -192,7 +192,7 @@ var s = "foo"
 <br>
 
 <table>
-<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -246,7 +246,7 @@ func User_Get(id string) *User {
 <br>
 
 <table>
-<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -275,7 +275,7 @@ pool := newSlavePool(...)
 <br>
 
 <table>
-<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -313,7 +313,7 @@ Go团队在其 官方文档 中列举了 build-in 预定义的标识符。我们
 <br>
 
 <table>
-<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -367,7 +367,7 @@ func (f Foo) String() string {
 <br>
 
 <table>
-<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -406,7 +406,7 @@ import (
 <br>
 
 <table>
-<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
