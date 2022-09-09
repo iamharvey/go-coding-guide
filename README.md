@@ -66,7 +66,7 @@
 例如：
 
 <table>
-<thead><tr><th>Bad</th><th>Good</th></tr></thead>
+<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -89,7 +89,7 @@ var s = "foo"
 
 文档中每个规约的编号都是全局唯一的。这样做的目的是方便大家进行全局的检索。规约编号为数字格式“x.x”，规约描述以“【规约 x.x】- <规约内容>”呈现。例如：
 
-> 【规约2.1】【强制】-  避免使用可被修改的全局变量。
+> 👉【规约2.1】【强制】-  避免使用可被修改的全局变量。
 
 
 <br>
@@ -150,7 +150,7 @@ var s = "foo"
 
 <br>
 
-## 编程规约
+## 2. 编程规约
 
 <br>
 
@@ -166,7 +166,7 @@ var s = "foo"
 
 <br>
 
-【规约 1.1】【强制】- 包（package）的命名，请遵循以下原则：
+👉【规约 1.1】【强制】- 包（package）的命名，请遵循以下原则：
 1. 使用lower-case，不允许使用下划线；
 2. 简明扼要，不宜过长；
 3. 不要使用复数；
@@ -180,7 +180,7 @@ var s = "foo"
 
 <br><br>
 
-【规约1.2】【强制】- 变量、 常量、函数及方法的命名遵循“mixedCaps”或“MixedCaps”风格，由英文字母组成。
+👉【规约1.2】【强制】- 变量、 常量、函数及方法的命名遵循“mixedCaps”或“MixedCaps”风格，由英文字母组成。
 
 ```
 【说明】
@@ -192,9 +192,9 @@ var s = "foo"
 <br>
 
 <table>
-<thead><tr><th>Bad</th><th>Good</th></tr></thead>
+<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
 <tbody>
-<tr><td style="float:top">
+<tr><td>
 
 ```go
 const (
@@ -213,7 +213,7 @@ func ResolveValue(str string) string {
 
 ```
 
-</td><td style="float: top">
+</td><td>
 
 ```go
 const (
@@ -240,6 +240,238 @@ func User_Get(id string) *User {
 </tbody></table>
 
 <br><br>
+
+👉【规约 1.3】【强制】- 代码和注释中都要避免使用任何脏话、侮辱性及涉及歧视和偏见词汇。  
+
+<br>
+
+<table>
+<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+strs := []string{"日本人", "印度人"}
+blockList := []string{"1.2.3.4", "2.3.4.5"}
+allowedList := []string{"192.168.1.1/24", "172.1.1/20"}
+    
+```
+
+</td><td>
+
+```go
+blackList := []string{"1.2.3.4", "2.3.4.5"}
+whiteList := []string{"192.168.1.1/24", "172.1.1/20"}
+pool := newSlavePool(...)
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约1.4】【强制】- 如果接口中仅定义了一个函数，接口名应为：函数名 + “er”或“or”。
+
+<br>
+
+<table>
+<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// Authenticator defines an authenticator that is 
+// able to validates authorization tokens.
+type Authenticator interface {
+    Authenticate(string) (*Claims, error)
+}
+```
+
+</td><td>
+
+```go
+// Auth defines an authenticator that is able to 
+// validates authorization tokens.
+type Auth interface {
+    Authenticate(string) (*Claims, error)
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约1.5】【强制】- 避免使用 build-in 名称来给变量、常量、函数和方法等命名。
+
+```text
+【说明】
+Go团队在其 官方文档 中列举了 build-in 预定义的标识符。我们需要避免使用这些名称。这些名称不仅容易在阅读代码时造成混淆，还容易引起bug。
+我们不要期望编译器来识别这样的问题（不过大部分IDE都会在编码时进行提示），因为大部分情况下，编译并不会出错。需要主观上避免。
+```
+
+<br>
+
+<table>
+<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+type Foo struct {
+    // 'err' and 'str' 
+    // 不会与 build-in 名称 'error', 'string'
+    // 发生混淆。
+    err error
+    str string
+}
+
+func (f Foo) Error() error {
+    return f.err
+}
+
+func (f Foo) String() string {
+    return f.str
+}     
+```
+
+</td><td>
+
+```go
+type Foo struct {
+    // 'error' and 'string' 
+    // 与 build-in 名称 'error', 'string'
+    // 发生混淆。
+    error  error
+    string string
+}
+
+func (f Foo) Error() error {
+    // 'error', 'f.error] 在视觉上很相似。
+    return f.error
+}
+
+func (f Foo) String() string {
+    // 'string' 和 'f.string' 在视觉上很相似。
+    return f.string
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约1.6】【强制】- 如果包名和导入的包路径的最后一部分不匹配，应使用别名（alias）。
+
+<br>
+
+<table>
+<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+import (
+    "net/http"
+    "runtime/trace"
+
+     client "example.com/client-go"
+     nettrace "golang.net/x/trace"
+)
+```
+
+</td><td>
+
+```go
+import (
+    "net/http"
+    "runtime/trace"
+
+    // 没有使用别名。
+    "example.com/client-go"
+    
+    // 糟糕的别名。
+    trace2 "example.com/trace/v2"
+)
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约1.7】【推荐】- 在为结构体（struct）定义成员方法（methods）时：“get”类方法命名省略使用“Get”前缀；set类方法需使用“Set” 前缀。
+
+<br>
+
+<table>
+<thead><tr><th>**GOOD**</th><th>**BAD**</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+type Pet struct {
+    name string
+    owner string
+}
+
+...
+
+func (p *Pet) Owner() string {
+    return p.owner
+}
+
+func (p *Pet) SetOwner(owner string) {
+    p.owner = owner
+}
+
+func main() {
+    p := &Pet{
+        name: "啸天犬",
+    }
+    
+    p.SetOwner("杨戬")
+    fmt.Printf("%s's owner is %s", p.Name(), p.Owner())
+}
+```
+
+</td><td>
+
+```go
+type Pet struct {
+    name string
+    owner string
+}
+
+...
+
+func (p *Pet) GetOwner() string {
+    return p.owner
+}
+
+func (p *Pet) SetOwner(owner string) {
+    p.owner = owner
+}
+
+func main() {
+    p := &Pet{
+        name: "啸天犬",
+    }
+    
+    p.SetOwner("杨戬")
+    fmt.Printf("%s's owner is %s", p.GetName(), p.GetOwner())
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br><br>
+
+### 2.2 变量与常量（Variables and Constants）
+
+<br>
 
 <hr>
 
