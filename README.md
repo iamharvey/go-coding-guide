@@ -28,6 +28,7 @@
 - [2. 编程规约]()
   - [2.1 命名规则（Naming）]()
   - [2.2 变量与常量（Variables and Constants）]()
+  - [2.3 代码格式（Formatting）]()
 
 
 <br>
