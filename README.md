@@ -476,7 +476,255 @@ func main() {
 
 ### 2.2 变量与常量（Variables and Constants）
 
+👉【规约2.1】【强制】-  避免使用可被修改的全局变量。
+
+```
+【说明】
+这类全局变量的问题就在于：它会在你不知情的情况下，被改变。
+````
+
 <br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+type signer struct {
+    now func() time.Time
+}
+
+func newSigner() *signer {
+    return &signer{
+        now: time.Now,
+    }
+}
+
+func (s *signer) Sign(msg string) string {
+    now := s.now()
+    return signWithTime(msg, now)
+}
+```
+
+</td><td>
+
+```go
+var _timeNow = time.Now
+
+func sign(msg string) string {
+    now := _timeNow()
+    return signWithTime(msg, now)
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约2.2】【强制】-  定义多个常量，通过小括号( )类聚。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// Database migration settings.
+const (
+   modeDebug               = false
+   migrateDropIndex        = false
+   migrateDropColumns      = false
+   migrateWithFKConstrains = true
+   enableHooks             = true
+)
+```
+
+</td><td>
+
+```go
+const modeDebug = false
+const migrateDropIndex = false
+
+func NewData(...) { 
+    ... 
+}
+
+const migrateDropColumns = false
+const migrateWithFKConstrains = true
+
+const enableHooks = true
+
+var hook func(next ent.Mutator) ent.Mutator { 
+    ... 
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约2.3】【强制】-  避免使用“magic word”。
+
+```
+【说明】
+“magic word”是那些没有通过变量/常量名来使用“裸值”，通常也没有注释。这些“毫无征兆”地出现的“magic word”有时会让准确理解代码变得困难。
+```
+
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+const (
+    numOfWorkers = 4
+    stopOnErr = true
+)
+...
+n, err := runJobs(jobs, numOfWorkers, stopOnErr)
+```
+
+</td><td>
+
+```go
+n, err := runJobs(jobs, 4, true)
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约2.4】【强制】-  使用“raw string literals”方式定义字符串（string），防止“hand-escaped”的字符。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+wantError := `unknown error:"test"`
+```
+
+</td><td>
+
+```go
+wantError := "unknown name:\"test\""
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约2.5】【推荐】-  建议使用:=来定义本地变量。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+s := "foo"
+```
+
+</td><td>
+
+```go
+var s = "foo"
+```
+
+</td></tr>
+</tbody></table>
+
+<br>
+
+在某些情况下，使用var会让默认值看起来更清楚：
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+func f(list []int) {
+    var filtered []int
+    for _, v := range list {
+        if v > 10 {
+            filtered = append(filtered, v)
+        }
+    }
+}
+```
+
+</td><td>
+
+```go
+func f(list []int) {
+    filtered := []int{}
+    for _, v := range list {
+        if v > 10 {
+            filtered = append(filtered, v)
+        }
+    }
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约2.6】【推荐】-  在枚举常量时，使用= iota来省略等差递进赋值：
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// ErrCode - error code.
+type Status int
+
+// Common error codes.
+const (
+   StatusUnknown Status = iota + 1
+   StatusStart
+   StatusStop
+   StatusPending
+   ...
+)
+```
+
+</td><td>
+
+```go
+// Common error codes.
+const (
+   StatusUnknown = 1
+   StatusStart = 2
+   StatusStop = 3
+   StatusPending = 4
+   ...
+)
+```
+
+</td></tr>
+</tbody></table>
 
 <hr>
 
