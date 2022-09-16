@@ -476,6 +476,8 @@ func main() {
 
 ### 2.2 变量与常量（Variables and Constants）
 
+<br>
+
 👉【规约2.1】【强制】-  避免使用可被修改的全局变量。
 
 ```
@@ -725,6 +727,343 @@ const (
 
 </td></tr>
 </tbody></table>
+
+<br><br><br>
+
+### 2.2 变量与常量（Variables and Constants）
+
+<br>
+
+👉【规约3.1】【强制】- 如果是大括号内为空，则简洁地写成{}即可，大括号中间无需换行和空格；如果是非空代码块则需遵循以下原则：
+- 左大括号前不换行；
+- 左大括号后换行；
+- 右大括号前换行；
+- 表示终止的右大括号后必须换行。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// 这样定义是ok的，但我们在实际工作中
+// 不需要这样的空方法。毫无意义！
+func g() {}
+
+func main() {
+    ...
+    if i < f() {
+        g()
+    }
+}
+```
+
+</td><td>
+
+```go
+// g不为空，但左大括号后没有换行。
+func g() { fmt.Println("say hi from g") }
+
+// 左大括号前无需换行。
+if i < f()
+{
+    g()
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约 3.2】【强制】- 任何二目、三目运算符（包括赋值运算符=、逻辑运算符&&、加减乘除符号）的左右两边都需要加一个空格。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+func f(a, b int) bool {
+    return (a + b) == 8
+}
+```
+
+</td><td>
+
+```go
+func f(a, b int) bool {
+    return (a+b)==8
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约 3.3】【强制】- 使用 Tab 字符（4个空格）缩进。 
+
+```
+【说明】
+gofmt默认也适用Tab字符来缩进。在文档的范例代码中，都是用 Tab 字符（4个空格）缩进。
+```
+
+<br><br>
+
+👉【规约3.4】【强制】- 单行字符数限制不超过120个，超出需要换行。换行时遵循如下原则：
+- 第二行相对第一行缩进一个Tab；
+- 运算符不与下文一起换行；
+- 函数调用的.符号不与下文一起换行；
+- 函数调用中的多个参数需要换行时，在逗号后换行；
+- 在括号前不要换行。 
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// Run executes the command. 
+func (o *Options) Run() error {
+    fromCache := false
+    t := time.Now()
+
+    // Fetch api resources from API server.
+    res, err := resource.NewBuilder(fromCache, o.Config).
+        Resource(defaultResourceType, "").
+        Schema(defaultSchema).
+        URL(defaultAPIPath).
+        CacheUp(defaultCacheUp).
+        SaveAs(defaultDictName, resource.MakeDict).
+        Do()
+    ...
+}
+```
+
+</td><td>
+
+```go
+res, err := resource.NewBuilder(fromCache, o.Config).
+Resource(defaultResourceType, "") // 没有缩进
+.Schema(defaultSchema)  // 调用的点符号与下文一起换行了
+.URL(defaultAPIPath)
+.CacheUp(defaultCacheUp)
+.SaveAs(defaultDictName 
+, resource.MakeDict).Do() // 在逗号前换行了
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约3.5】【强制】- 单个函数/方法传入参数不超过6个。
+
+<br><br>
+
+👉【规约3.6】【强制】- 函数/方法参数在定义和传入时，多个参数逗号后面必须加空格。 
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+func f(a, b int) int {
+    return a + b
+}
+
+func main() {
+    a := 1
+    b := 2
+    c := func(a, b)
+}
+```
+
+</td><td>
+
+```go
+func f(a,b int) int {
+    return a + b
+}
+
+func main() {
+    a := 1
+    b := 2
+    c := func(a,b)
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约3.7】【强制】- 单个函数返回值数量不超过3个。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+func subtract(a, b int) int {
+    return a - b
+}
+
+func sum(a, b int) int {
+    return a + b
+}
+
+...
+
+func main() {
+    a := 1
+    b := 2
+    diff := subtract(a, b)
+    sum  := sum(a, b)
+    ...
+}
+```
+
+</td><td>
+
+```go
+// calc 干了太多活。
+func calc(a, b int) (int, int, int, bool) {
+    return a - b, a + b, a * b, (a + b) == 8
+}
+
+func main() {
+    a := 1
+    b := 2
+    sub, sum, mul, is8 := calc(a, b)
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约3.8】【强制】- IDE的“text file encoding”设置为 UTF-8；IDE中换行符使用Unix格式，不要使用Windows格式。 
+
+<br><br>
+
+👉【规约3.9】【推荐】- 单个函数/方法不超过80行。
+
+```
+【说明】
+- 除注释之外的函数/方法签名、左右大括号、方法内代码、空行、回车及任何不可见字符的总行数不超过80行；
+- 代码逻辑分清红花和绿叶，个性和共性，绿叶逻辑单独出来成为额外方法，使主干代码更加清晰；
+- 共性逻辑抽取成为共性方法，便于复用和维护，也更便于编写单元测试。
+```
+
+<br><br>
+
+👉【规约3.10】【推荐】- 不同逻辑、不同语义、不同业务的代码之间插入一个空行分隔开来以提升可读性。 
+
+<br><br>
+
+👉【规约3.11】【推荐】- 使用()来类聚相似的申明（declaration）。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+const (
+    a = 1
+    b = 2
+)
+
+var (
+    c = 1
+    d = 2
+)
+
+type (
+    Area float64
+    Volume float64
+)
+```
+
+</td><td>
+
+```go
+const a = 1
+const b = 2
+
+var c = 1
+var d = 2
+
+type Area float64
+type Volume float64
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约3.12】【推荐】- 组织导入（import）申明要遵循这样的顺序：“先标准库，再其他”。同源的包申明要组织在一起。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+import (
+    "fmt"
+    "os"
+
+    "go.uber.org/atomic"
+    "golang.org/x/sync/errgroup"
+)
+```
+
+</td><td>
+
+```go
+import (
+    "fmt"
+    "os"
+    "go.uber.org/atomic"
+    "golang.org/x/sync/errgroup"
+)
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约3.13】【推荐】- 在提交代码前，运行gofmt来自动修正格式问题。
+
+```
+【说明】
+可以使用格式化自动化工具并不代表你不需要了解编码风格的规约，了解和掌握它们对培养良好的编码习惯、编写出“令人愉悦”的代码至关重要。
+```
+
+<br><br><br>
+
 
 <hr>
 
