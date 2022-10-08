@@ -259,7 +259,6 @@ func User_Get(id string) *User {
 strs := []string{"日本人", "印度人"}
 blockList := []string{"1.2.3.4", "2.3.4.5"}
 allowedList := []string{"192.168.1.1/24", "172.1.1/20"}
-    
 ```
 
 </td><td>
@@ -1064,6 +1063,272 @@ import (
 
 <br><br><br>
 
+### 2.4 注释（Comment）
+
+<br>
+
+👉【规约4.1】【强制】- 对包进行注释，要使用/* 内容 */格式。并以“package <包名称>”开头。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+/*
+Package regexp implements a simple library for regular
+expressions.
+
+The syntax of the regular expressions accepted is:
+
+    regexp:
+        concatenation { '|' concatenation }
+    concatenation:
+        { closure }
+    closure:
+        term [ '*' | '+' | '?' ]
+    term:
+        '^'
+        '$'
+        '.'
+        character
+        '[' [ '^' ] character-ranges ']'
+        '(' regexp ')'
+*/
+package regexp
+```
+
+</td><td>
+
+```go
+// This package implements ....
+// ...
+package regexp
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约4.2】【强制】- 所有对外暴露的变量、常量、函数或方法都需要添加注释。添加注释要以 `//` 开头，并以变量、常量、函数或方法名开头，注释的双斜线与注释内容之间有且仅有一个空格。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// Compile parses a regular expression and returns, 
+// if successful, a Regexp that can be used to match 
+// against text.
+func Compile(str string) (*Regexp, error) {
+	...
+}
+```
+
+</td><td>
+
+```go
+// This function parses ...
+func Compile(str string) (*Regexp, error) {
+	...
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约4.3】【强制】- 注释必须是一个完整的句式（拥有完整的句式）。
+
+```
+【说明】
+拥有完整的句式，可以让他们在生成doc时，具备良好的可读性。
+```
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// NewUser creates an new user.
+func NewUser(*User) (*User, error) {
+    ...
+}
+```
+
+</td><td>
+
+```go
+// NewUser, new user.
+func NewUser(*User) (*User, error) {
+	...
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约4.4】【推荐】- 与其“半吊子”英文来注释，不如用中文注释把问题说清楚。专有名词与关键字保持英文原文即可。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// healthCheck 检查上游服务的心跳状态。
+// 如果心跳正常，返回true；反之，返回false。 
+func healthCheck(ctx context.Context) bool {
+    ...
+}
+```
+
+</td><td>
+
+```go
+// healthCheck 检查up服务的state.
+// 如果state ok, 返回 true; 反之 false。
+func healthCheck(ctx context.Context) bool {
+    ...
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约4.5】【推荐】- 与其“半吊子”英文来注释，不如用中文注释把问题说清楚。专有名词与关键字保持英文原文即可。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// healthCheck 检查上游服务的心跳状态。
+// 如果心跳正常，返回true；反之，返回false。 
+func healthCheck(ctx context.Context) bool {
+    ...
+}
+```
+
+</td><td>
+
+```go
+// healthCheck 检查up服务的state.
+// 如果state ok, 返回 true; 反之 false。
+func healthCheck(ctx context.Context) bool {
+    ...
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约4.6】【推荐】- 代码修改的同时，注释也要进行相应的修改，尤其是参数、返回值、异常、核心逻辑等的修改。
+
+```go
+【说明】
+代码与注释更新不同步，就像路网与导航软件更新不同步一样，如果导航软件严重滞后，就失去了导航的意义。
+```
+
+<br><br>
+
+👉【规约4.7】【推荐】- 对于还没有搞定，仍然存在问题的代码要添加FIXME注释（第二行可以考虑缩进一个Tab字符）。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// NewWorkerPool returns a worker pool.
+// FIXME：The function has data race problem, 
+//        need to be fixed in v1.0.2.
+func NewWorkerPool(opt *PoolOption) (*Pool, err) {
+    ...
+}
+```
+
+</td><td>
+
+```go
+// TLSClientConfig defines a client TLS config.
+type TLSClientConfig struct {
+    CACert     string
+    ServerName string
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约 4.8】【参考】- 谨慎注释掉代码。在上方详细说明，而不是简单地注释掉。如果无用，则删除。
+
+```text
+【说明】
+代码被注释掉有两种可能性：
+1. 后续会恢复此段代码逻辑；
+2. 永久不用。
+
+前者如果没有备注信息，难以知晓注释动机。后者建议直接删掉即可。
+```
+
+<br><br>
+
+👉【规约 4.9】【参考】- 注释要准确和清晰。
+
+```text
+【说明】
+对于注释的要求：
+1. 能够准确反映设计思想和代码逻辑；
+2. 能够描述业务含义，使阅读代码的同学能够快速了解到代码编写的背景。
+```
+
+<br><br>
+
+👉【规约 4.10】【参考】- 对于自解释性好的本地函数、变量，可不添加注释。
+
+```text
+【说明】
+好的命名、代码结构是自解释的。对于那些看到名称就可以较容易明白其作用或功能的常量、变量、函数或方法可不添加注释。这里需要注意的是：对外暴露的部分都需要加注释，因为他们会成为API文档的一部分。
+```
+
+<br><br>
+
+👉【规约 4.11】【参考】- 特殊注释标记，请注明标记人与标记时间。注意及时处理这些标记，通过标记扫描，经常清理此类标记。
+
+```text
+【说明】
+线上故障有时候就是来源于这些标记处的代码：
+- 待办事宜（TODO）:（标记人，标记时间，[预计处理时间]） 表示需要实现，但目前还未实现的功能；
+- 错误，不能工作（FIXME）:（标记人，标记时间，[预计处理时间]） 在注释中用FIXME标记某代码是错误的，而且不能工作，需要及时纠正的情况。 
+```
+
+<br><br><br>
 
 <hr>
 
@@ -1074,7 +1339,7 @@ import (
 <br>
 
 | **类型** | **值大小** | **在GO官方文档中的说明**
-| -- | -- | --
+| --- | --- | ---
 | bool | 1 byte | not specified
 | int8, uint8 (byte) | 1 byte | 1 byte
 | int16, uint16 | 2 bytes | 2 bytes
