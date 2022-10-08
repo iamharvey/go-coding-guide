@@ -107,36 +107,35 @@ var s = "foo"
 
 文中经常出现的一些名称及其原生英文的对照关系如下表：
 
-| **中文名称** | **原生英文名称** |
-| --- | --- |
-| 包 | package
-|（包）导入 | import
-|（包）别名 | alias
-| 类型 | type
-| 接口 | interface
-| 结构体 | struct
-| 值 | value
-| 指针 | pointer
-| 接收者（方法中的概念） | receiver
-| 值类接受者 | value receiver
-| 指针类接受者 | pointer receiver
-| 申明 | declaration
-|（变量）引用 | reference
-| 字符串 | string
-| 字节 | byte
-| 数组 | array
-| 切片 | slice
-| 上下文 | context
-| 崩溃 | panic / panicing
-| 堆 | heap
-| 栈 | stack
-| 垃圾回收 | garbage collection (gc)
-| 返回值 | returned value(s)
-| 并发 | concurrency
-| 互斥锁 | mutex lock
-| 原子操作 | atomic operation
-| 性能测试 | Benchmark testing
-
+| **中文名称**    | **原生英文名称**              |
+|-------------|-------------------------|
+| 包           | package                 |
+| （包）导入       | import                  |
+| （包）别名       | alias                   |
+| 类型          | type                    |
+| 接口          | interface               |
+| 结构体         | struct                  |
+| 值           | value                   |
+| 指针          | pointer                 |
+| 接收者（方法中的概念） | receiver                |
+| 值类接受者       | value receiver          |
+| 指针类接受者      | pointer receiver        |
+| 申明          | declaration             |
+| （变量）引用      | reference               |
+| 字符串         | string                  |
+| 字节          | byte                    |
+| 数组          | array                   |
+| 切片          | slice                   |
+| 上下文         | context                 |
+| 崩溃          | panic / panicing        |
+| 堆           | heap                    |
+| 栈           | stack                   |
+| 垃圾回收        | garbage collection (gc) |
+| 返回值         | returned value(s)       |
+| 并发          | concurrency             |
+| 互斥锁         | mutex lock              |
+| 原子操作        | atomic operation        |
+| 性能测试        | Benchmark testing       |
 
 <br>
 
