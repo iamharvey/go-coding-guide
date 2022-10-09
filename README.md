@@ -22,14 +22,15 @@
 ## 目录
 
 - [1. 介绍](#1-%E4%BB%8B%E7%BB%8D)
-  - [1.1 阅读引导](#1-%E4%BB%8B%E7%BB%8D)
-  - [1.2 名词对照表]()
-  - [1.3 文档组织]()
-- [2. 编程规约]()
-  - [2.1 命名规则（Naming）]()
-  - [2.2 变量与常量（Variables and Constants）]()
-  - [2.3 代码格式（Formatting）]()
-  - [2.4 注释（Comment）]()
+  - [1.1 阅读引导](#11-%E9%98%85%E8%AF%BB%E5%BC%95%E5%AF%BC)
+  - [1.2 名词对照表](#12-%E5%90%8D%E8%AF%8D%E5%AF%B9%E7%85%A7%E8%A1%A8)
+  - [1.3 文档组织](#13-%E6%96%87%E6%A1%A3%E7%BB%84%E7%BB%87)
+- [2. 编程规约](#2-%E7%BC%96%E7%A8%8B%E8%A7%84%E7%BA%A6)
+  - [2.1 命名规则（Naming）](#21-%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99naming)
+  - [2.2 变量与常量（Variables and Constants）](#22-%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8Fvariables-and-constants)
+  - [2.3 代码格式（Formatting）](#23-%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8Fformatting)
+  - [2.4 注释（Comment）](#24-%E6%B3%A8%E9%87%8Acomment)
+  - [2.5 控制语句（Control）]()
 
 <br>
 
