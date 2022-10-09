@@ -1331,6 +1331,324 @@ type TLSClientConfig struct {
 
 <br><br><br>
 
+### 2.5 控制语句（Control）
+
+<br>
+
+👉【规约5.1】【推荐】- 表达异常的分支时，少用“if-else”的方式。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+err := doSomething()
+if err != nil {
+    return nil, err
+}
+
+doSomethingElse()
+```
+
+</td><td>
+
+```go
+err := doSomething()
+if err == nil {
+	doSomethingElse()
+} else {
+    return nil, err
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约5.2】【推荐】- 尽量避免“if-else”语句的多层嵌套。
+
+```text
+【说明】
+通过对控制流的重新梳理，一般我们都可以将嵌套移除，这样可以大大增加代码可读性，让debug也变得容易些。
+```
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+for _, v := range data {
+	if v.F1 != 1 {
+		log.Printf("Invalid v: %v", v)
+        continue
+    }
+  
+    v = process(v)
+    if err := v.Call(); err != nil {
+		return err
+    }
+    v.Send()
+}
+```
+
+</td><td>
+
+```go
+for _, v := range data {
+    if v.F1 == 1 {
+        v = process(v)
+        if err := v.Call(); err == nil {
+            v.Send()
+        } else {
+            return err
+        }
+    } else {
+		log.Printf("Invalid v: %v", v)
+    }
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约5.3】【推荐】- 如果返回值仅为错误，通常可以将错误定义成局部变量判断和使用。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+if err := file.Chmod(0664); err != nil {
+    return err
+}
+```
+
+</td><td>
+
+```go
+err := file.Chmod(0664)
+if err != nil {
+    return err
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约5.4】【推荐】- 如果返回值包含了除错误值外的其他值，且这些返回值后续还需使用，则需将错误检查换行书写。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+f, err := os.Open(name)
+if err != nil {
+    return err
+}
+d, err := f.Stat()
+if err != nil {
+    f.Close()
+    return err
+}
+codeUsing(f, d)
+```
+
+</td><td>
+
+```go
+if f, err := os.Open(name); err != nil {
+    return err
+}
+
+// 会出现编译错误，因为'f'为本地变量，
+// 对外部代码不可见。
+d, err := f.Stat()
+if err != nil {
+    f.Close()
+    return err
+}
+codeUsing(f, d)
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约5.5】【推荐】- 遍历字符串，数组（array）， 切片（slice），map 或从 channel 中读取数据时，请使用range。
+<br>
+
+<table>
+<thead><tr><th>GOOD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// Copy a map.
+for key, value := range oldMap {
+    newMap[key] = value
+}
+
+// Read a string char by char.
+for pos, char := range "中国崛起，世界和平" {
+    fmt.Printf("character %#U starts at byte position %d\n", char, pos)
+}
+```
+
+</tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约5.6】【推荐】- 如果仅遍历字符串，数组，切片，map 或 channel 中的值，而无需使用index值或key值时，使用`_`来忽略它们。
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+sum := 0
+for _, v := range array {
+    sum += value
+}
+```
+
+</td><td>
+
+```go
+sum := 0
+for k, v := range array {
+    sum += value
+    // 'k' is not used.
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约5.7】【推荐】- 在使用switch语句时，相同的case建议合并。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+select {
+    case sig := <-sigChan:
+    switch sig {
+	case syscall.SIGHUP:
+        if err := srv.forkChild(killMaster, mpid); err != nil {
+            continue
+        }
+        return srv.shutDown()
+    case syscall.SIGUSR1, syscall.SIGUSR2:
+        if err := srv.forkChild(killMaster, mpid); err != nil {
+            continue
+        }
+    case syscall.SIGINT, syscall.SIGTERM:
+        return srv.shutDown()
+	}
+}
+```
+
+</td><td>
+
+```go
+select {
+    case sig := <-sigChan:
+    switch sig {
+    case syscall.SIGHUP:
+        if err := srv.forkChild(killMaster, mpid); err != nil {
+            continue
+        }
+        return srv.shutDown()
+    case syscall.SIGUSR1:
+        if err := srv.forkChild(killMaster, mpid); err != nil {
+            continue
+        }
+    case syscall.SIGUSR2:
+        if err := srv.forkChild(killMaster, mpid); err != nil {
+            continue
+        }
+    case call.SIGINT, syscall.SIGTERM:
+        return srv.shutDown()
+    }
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约5.8】【推荐】- 在使用switch语句时，break默认退出 switch block。在多控制语句嵌套使用时，可以使用break <block名称>来退出指定的 block。
+
+<br>
+
+<table>
+<thead><tr><th>GOOD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+Loop:
+    for n := 0; n < len(src); n += size {
+        switch {
+            case src[n] < sizeOne:
+                if validateOnly {
+                    break
+                }
+                size = 1
+                update(src[n])
+            case src[n] < sizeTwo:
+                if n+1 >= len(src) {
+                    err := errShortInput
+                    break Loop // 退出整个'Loop' block。
+                }
+
+                if validateOnly {
+                    break
+                }
+
+                size = 2
+                update(src[n] + src[n+1]<<shift)
+            }
+        }
+    }
+```
+
+</tr>
+</tbody></table>
+
+<br><br>
+
+<br><br><br>
+
 <hr>
 
 <br>
