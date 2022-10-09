@@ -21,8 +21,8 @@
 
 ## 目录
 
-- [1. 介绍](https://github.com/iamharvey/go-coding-guide/blob/main/README.md#1-%E4%BB%8B%E7%BB%8D)
-  - [1.1 阅读引导]()
+- [1. 介绍](#1-%E4%BB%8B%E7%BB%8D)
+  - [1.1 阅读引导](#1-%E4%BB%8B%E7%BB%8D)
   - [1.2 名词对照表]()
   - [1.3 文档组织]()
 - [2. 编程规约]()
