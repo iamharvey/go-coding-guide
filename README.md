@@ -30,7 +30,7 @@
   - [2.2 变量与常量（Variables and Constants）](#22-%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8Fvariables-and-constants)
   - [2.3 代码格式（Formatting）](#23-%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8Fformatting)
   - [2.4 注释（Comment）](#24-%E6%B3%A8%E9%87%8Acomment)
-  - [2.5 控制语句（Control）]()
+  - [2.5 控制语句（Control）](#25-%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5control)
 
 <br>
 
