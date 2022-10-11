@@ -31,6 +31,8 @@
   - [2.3 代码格式（Formatting）](#23-%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8Fformatting)
   - [2.4 注释（Comment）](#24-%E6%B3%A8%E9%87%8Acomment)
   - [2.5 控制语句（Control）](#25-%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5control)
+  - [2.6 结构体（Struct）]()
+  - [2.7 常用数据结构（Array,  Slice And Map）]()
 
 <br>
 
@@ -73,7 +75,7 @@
 例如：
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -198,7 +200,7 @@ var s = "foo"
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -252,7 +254,7 @@ func User_Get(id string) *User {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -280,7 +282,7 @@ pool := newSlavePool(...)
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -318,7 +320,7 @@ Go团队在其 官方文档 中列举了 build-in 预定义的标识符。我们
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -372,7 +374,7 @@ func (f Foo) String() string {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -411,7 +413,7 @@ import (
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -488,7 +490,7 @@ func main() {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -530,7 +532,7 @@ func sign(msg string) string {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -581,7 +583,7 @@ var hook func(next ent.Mutator) ent.Mutator {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -610,7 +612,7 @@ n, err := runJobs(jobs, 4, true)
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -634,7 +636,7 @@ wantError := "unknown name:\"test\""
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -656,7 +658,7 @@ var s = "foo"
 在某些情况下，使用var会让默认值看起来更清楚：
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -694,7 +696,7 @@ func f(list []int) {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -743,7 +745,7 @@ const (
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -783,7 +785,7 @@ if i < f()
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -825,7 +827,7 @@ gofmt默认也适用Tab字符来缩进。在文档的范例代码中，都是用
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -873,7 +875,7 @@ Resource(defaultResourceType, "") // 没有缩进
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -913,7 +915,7 @@ func main() {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -981,7 +983,7 @@ func main() {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1025,7 +1027,7 @@ type Volume float64
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1073,7 +1075,7 @@ import (
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1119,7 +1121,7 @@ package regexp
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1156,7 +1158,7 @@ func Compile(str string) (*Regexp, error) {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1186,7 +1188,7 @@ func NewUser(*User) (*User, error) {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1218,7 +1220,7 @@ func healthCheck(ctx context.Context) bool {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1259,7 +1261,7 @@ func healthCheck(ctx context.Context) bool {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1340,7 +1342,7 @@ type TLSClientConfig struct {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1379,7 +1381,7 @@ if err == nil {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1425,7 +1427,7 @@ for _, v := range data {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1454,7 +1456,7 @@ if err != nil {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1497,7 +1499,7 @@ codeUsing(f, d)
 <br>
 
 <table>
-<thead><tr><th>GOOD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1522,7 +1524,7 @@ for pos, char := range "中国崛起，世界和平" {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1553,7 +1555,7 @@ for k, v := range array {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th><th>BAD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1611,7 +1613,7 @@ select {
 <br>
 
 <table>
-<thead><tr><th>GOOD</th></tr></thead>
+<thead><tr><th style="color:green;">GOOD</th></tr></thead>
 <tbody>
 <tr><td>
 
@@ -1645,7 +1647,609 @@ Loop:
 </tr>
 </tbody></table>
 
+<br><br><br>
+
+## 2.6 结构体（Struct）
+
+<br>
+
+👉【规约6.1】【强制】-  使用“composite literals” 来初始化结构体。
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// heads is a two-dimensional slice
+var heads = []*[4]byte{
+    {'P', 'N', 'G', ' '},
+    {'G', 'I', 'F', ' '},
+    {'J', 'P', 'E', 'G'},
+}
+```
+
+</td><td>
+
+```go
+func NewFile(fd int, name string) *File {
+  if fd < 0 {
+      return nil
+  }
+  f := new(File)
+  f.fd = fd
+  f.name = name
+  f.dirinfo = nil
+  f.nepipe = 0
+  return f
+}
+```
+
+</td></tr>
+</tbody></table>
+
 <br><br>
+
+👉【规约6.2】【强制】-  在初始化结构体时，总是使用“field name”。
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+k := User{
+    FirstName: "敖",
+    LastName: "丙",
+    Admin: true,
+}
+```
+
+</td><td>
+
+```go
+k := User{"敖", "丙", true}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br><br>
+
+## 常用数据结构（Array,  Slice And Map）
+
+<br>
+
+👉【规约7.1】【强制】-  当我们需要获得一个nil值的切片时，需使用var来定义变量。
+
+```text
+【说明】
+- :=返回的是一个非空的 zero-length的切片；
+- 在某些情况下，我们会倾向使用:=而非var。例如：在将 一个对象编码成一个JSON对象时，空切片将会被编码成nil。这时，我们需要使用[]string{}将它编码成JSON空数组[]。
+```
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+var a []int
+...
+if a == nil {
+    ...
+} 
+```
+
+</td><td>
+
+```go
+a := []int{}
+...
+if a == nil { // 'a'不会为nil值。
+    ...
+} 
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.2】【强制】-  在使用copy函数来复制数组或切片时，不强制要求两个数组或切片的类型必须一样 ，但需要复制的元素类型必须是一样的。
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+type (
+    Ta []int
+    Tb []int
+)
+
+dest := Ta{1, 2, 3}
+src := Tb{5, 6, 7, 8, 9}
+
+n := copy(dest, src)
+fmt.Println(n, dest) // 3 [5 6 7]
+
+n = copy(dest[1:], dest)
+fmt.Println(n, dest) // 2 [5 5 6] 
+```
+
+</td><td>
+
+```go
+type (
+    Ta []int
+    Tb []int32
+)
+
+dest := Ta{1, 2, 3}
+src := Tb{5, 6, 7, 8, 9}
+
+// 编译错误，元素类型不一致
+// dest为int，而src为int32。
+n := copy(dest, src)
+fmt.Println(n, dest) 
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.3】【强制】-  当使用=来拷贝数组或切片时，需确保类型是一致的。
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+type Ta []int
+
+var newOne Ta
+oldOne := Ta{1, 2, 3}
+newOne = oldOne
+fmt.Printf("%+v\n", newOne) // [1 2 3]
+```
+
+</td><td>
+
+```go
+type (
+    Ta []int
+    Tb []int
+)
+
+ta := Ta{1, 2, 3}
+// 编译错误，类型不一致
+// 'ta' 的类型为Ta，'tb'的类型为Tb
+tb := ta
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.4】【强制】-  在遍历切片时，使用“value semantics”。
+
+```text
+【说明】
+遍历数组或切片时，通常有两种方式：
+- “value semantics” - 读和写的操作都通过拷贝进行；
+- “pointer semantics” - 读和写的操作都通过指针进行。
+
+通过“value semantics”来遍历数组或切片的好处是：
+- 数据的读写操作本地化，对外部函数/方法不可见，隔离性好；
+- 由于没有引用（reference），数据不会“逃逸”到堆上，减少垃圾回收（GC)的性能开销。
+
+只有一种情况下，可以考虑使用“pointer semantics”：共享切片进行decoding或unmarshalling操作。
+```
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+<p style="text-align: center;">Value Semantics</p>
+
+```go
+fruits := [3]string{"Apple", "Orange", "Banana"}
+for i, fruit := range fruits {
+    println(i, fruit)
+}
+
+// Output:
+// 0 Apple
+// 1 Orange
+// 2 Banana
+```
+
+</td><td>
+<p style="text-align: center;">Pointer Semantics</p>
+
+```go
+fruits := [3]string{"Apple", "Orange", "Banana"}
+for i := range fruits {
+    println(i, fruits[i])
+}
+ 
+// Output:
+// 0 Apple
+// 1 Orange
+// 2 Banana
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.5】【强制】-  在截取切片数据时，使用[<from>:<to>]（其中， from和to都是index值，不截取结果不包含to位的数据）。
+
+```text
+【说明】
+使用[from:to]方式可以避免创建额外的拷贝，降低内存开销。
+```
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+slice1 := []string{"A", "B", "C", "D", "E"}
+slice2 := slice1[2:4]
+```
+
+</td>
+</tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.6】【强制】-  检查一个切片是否为空时，使用len(s) == 0，切勿使用== nil。
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+func isEmpty(s []string) bool {
+    return len(s) == 0
+}
+```
+
+</td><td>
+
+```go
+func isEmpty(s []string) bool {
+    return s == nil
+}
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.7】【强制】-  使用make来创建空的map。
+```text
+【说明】
+注意make返回的不是指针，而是值。
+```
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+var (
+	// m1 is safe to read and write; 
+	// m2 will panic on writes. 
+	m1 = make(map[T1]T2, 3) 
+	m2 map[T1]T2
+)
+```
+
+</td><td>
+
+```go
+var ( 
+	// m1 is safe to read and write;
+    // m2 will panic on writes.
+    m1 = map[T1]T2{}
+    m2 map[T1]T2
+)
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.8】【强制】-  使用“map literals”来初始化 map 。
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+m := map[T1]T2{
+    k1: v1,
+    k2: v2,
+    k3: v3,
+}
+```
+
+</td><td>
+
+```go
+m := make(map[T1]T2, 3)
+m[k1] = v1
+m[k2] = v2
+m[k3] = v3
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+<br><br>
+
+👉【规约7.9】【强制】- 使用make来创建切片 或 map时，当你知道需要的容量时，请务必指定容量。
+
+```text
+【说明】
+不指定容量，map将被创建在堆上，增加垃圾回收的性能开销。
+```
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+m := make(map[string]int, 10)
+```
+
+</td><td>
+
+```go
+m := make(map[string]int)
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.10】【强制】-  在对 map 中元素进行值更新时，应通过“中间人”来实现。
+
+```text
+【说明】
+这里，所谓“中间人”其实指的就是临时变量。不引入“中间人”将无法直接对 map 中结构体的 field 值进行修改。
+```
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+type Hero struct{
+    age int
+}
+
+heros := make(map[string]Hero, 2)
+heros["哪吒"] = Hero{ age: 8 }
+
+t := heros["哪吒"] // 引入临时变量'hero'
+t.age = 10
+heros["哪吒"] = t // 覆盖
+
+fmt.Println(heros["哪吒"].age) // 10
+```
+
+</td><td>
+
+```go
+type Hero struct{
+    age int
+}
+
+heros := make(map[string]Hero, 2)
+heros["哪吒"] = Hero{age: 8 }
+
+// 直接修改结构体的field值，会出现编译错误。
+heros["哪吒"].age = 10
+
+fmt.Println(heros["哪吒"].age)
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.11】【推荐】- 在对切片进行append操作时，可以使用“3-index-slice”方式来避免对已占用的地址所存放的值进行误修改。
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+slice1 := []string{"A", "B", "C", "D", "E"}
+slice2 := slice1[2:4:4]
+inspectSlice(slice1)
+inspectSlice(slice2)
+
+// Output:
+// Length[5] Capacity[5]
+// [0] 0xc00007e000 A
+// [1] 0xc00007e010 B
+// [2] 0xc00007e020 C
+// [3] 0xc00007e030 D
+// [4] 0xc00007e040 E
+// Length[2] Capacity[2]
+// [0] 0xc00007e020 C
+// [1] 0xc00007e030 D
+```
+
+【范例说明】
+该例子中使用了“3-index-slice”方式 - `[a:b:c]` - 来进行切片。其中`b=c`。这种情况下：`[a-b]` 规定了切片的长度；而`[a-c]`规定了切片的容量。这就让长度和容量相等，由此避免了值的误修改。
+
+</td><td>
+
+```go
+slice1 := []string{"A", "B", "C", "D", "E"}
+slice2 := slice1[2:4]
+slice2 = append(slice2, "CHANGED")
+inspectSlice(slice1)
+inspectSlice(slice2)
+
+// Output:
+// Length[5] Capacity[5]
+// [0] 0xc00007e000 A
+// [1] 0xc00007e010 B
+// [2] 0xc00007e020 C
+// [3] 0xc00007e030 D
+// [4] 0xc00007e040 CHANGED
+// Length[3] Capacity[3]
+// [0] 0xc00007e020 C
+// [1] 0xc00007e030 D
+// [2] 0xc00007e040 CHANGED
+
+// append 函数增加了 slice2 的长度,
+// 由此改变了地址[0xc00007e040]的值。
+// 但这个地址在 slice1 中已经被占用，
+// 这就导致了 slice1 中该地址的值也同时被更改了。
+```
+
+</td></tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.12】【推荐】- 在扩展切片时，使用append函数来追加元素。可以使用...将一个数组中的元素追加到另一个数组中。
+
+```text
+【说明】
+- 使用append是安全的（总是返回拷贝）；
+- append会尽可能地确保内存分配的连续性；
+- 截止到（Go 1.17），append 函数的第一个参数不能为untyped nil。
+```
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+s0 := []int{1, 2, 3}
+s1 := []int{4, 5, 6}
+s0 = append(s0, s1...)
+fmt.Println(s0, cap(s0)) // [1, 2, 3, 4, 5, 6] 6 
+```
+
+</td>
+</tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.13】【推荐】- 可以通过将切片值重置为nil来快速清除切片中值。
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+s0 := []int{1, 2, 3}
+s0 = nil
+fmt.Println(s0, len(s0), cap(s0)) // [] 0 0
+```
+
+</td>
+</tr>
+</tbody></table>
+
+<br><br>
+
+👉【规约7.14】【推荐】-  在对 map 中的元素进行读写操作时，可以使用, ok来检查元素是否存在。
+
+<br>
+
+<table>
+<thead><tr><th style="color:green;">GOOD</th><th style="color:red;">BAD</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+func offset(tz string) int {
+	if seconds, ok := timeZone[tz]; ok {
+		return seconds
+	}
+    log.Println("unknown time zone:", tz)
+    return 0
+}
+```
+
+</td>
+
+<td>
+
+```go
+func offset(tz string) int {
+    if seconds := timeZone[tz]; seconds != nil {
+        return seconds
+    }
+    log.Println("unknown time zone:", tz)
+    return 0
+}
+```
+
+</td></tr>
+
+</tbody></table>
 
 <br><br><br>
 
