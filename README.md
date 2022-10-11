@@ -31,8 +31,8 @@
   - [2.3 代码格式（Formatting）](#23-%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8Fformatting)
   - [2.4 注释（Comment）](#24-%E6%B3%A8%E9%87%8Acomment)
   - [2.5 控制语句（Control）](#25-%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5control)
-  - [2.6 结构体（Struct）]()
-  - [2.7 常用数据结构（Array,  Slice And Map）]()
+  - [2.6 结构体（Struct）](#26-%E7%BB%93%E6%9E%84%E4%BD%93struct)
+  - [2.7 常用数据结构（Array,  Slice And Map）](#27-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84array--slice-and-map)
 
 <br>
 
@@ -1720,7 +1720,7 @@ k := User{"敖", "丙", true}
 
 <br><br><br>
 
-## 常用数据结构（Array,  Slice And Map）
+## 2.7 常用数据结构（Array,  Slice And Map）
 
 <br>
 
